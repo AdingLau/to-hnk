@@ -23,7 +23,12 @@ document.addEventListener("DOMContentLoaded", function() {
   var audio = document.getElementById("audio");
   
   function playMusic() {
+    document.removeEventListener("click", playMusic);
     audio.play();
+    audio.addEventListener("ended", function() {
+      audio.currentTime = 0;
+      audio.play();
+    });
   }
   // 用户操作触发播放音频
   document.addEventListener("click", playMusic);
